@@ -7,13 +7,17 @@ import ProductCard from "./components/ProductCard";
 function App() {
 
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [productName, setProductName] = useState("");
+  const [productPrice, setProductPrice] = useState("");
+  const [submittedProduct, setSubmittedProduct] = useState(null);
 
   return (
     <div className="app">
       <Header title="MMS Admin Dashboard" />
 
       <button onClick={() => setSidebarOpen(!sidebarOpen)}>
-        {sidebarOpen ? "Close Sidebar" : "Open Sidebar"}
+        {sidebarOpen ? "Hide Sidebar" : "Show Sidebar"}
       </button>
 
       <div className="app-body">
@@ -31,6 +35,53 @@ function App() {
           title="Dashboard"
           text="Welcome to the Market Management System."
         >
+
+          <div className="search-section">
+            <label htmlFor="product-search">Search inventory: </label>
+
+            <input 
+              id="product-search"
+              type="text" 
+              placeholder="Enter a spare part name"
+              value={searchTerm}
+              onChange={(event) => setSearchTerm(event.target.value)}
+            />
+          </div>
+
+          {/* Add Product form */}
+          <div className="add-product-section">
+            <h3>Add New Product</h3>
+
+            <form action="">
+              <div>
+                <label htmlFor="product-name">Product Name: </label>
+                <input 
+                  id="product-name"
+                  type="text"
+                  placeholder="e.g. Toyota Brake Pad"
+                  value={productName}
+                  onChange={(event) => setProductName(event.target.value)}
+                />
+              </div>
+              <br />
+
+              <div>
+                <label htmlFor="product-price">Price (₦): </label>
+                <input 
+                  id="product-price"
+                  type="number"
+                  placeholder="e.g. 45000"
+                  value={productPrice}
+                  onChange={(event) => setProductPrice(event.target.value)}
+                />
+              </div>
+              <br />
+
+              <button type="submit">Add Product</button>
+            </form>
+          </div>
+
+          {/* ProductCard  */}
           <div className="product-section">
             <div className="section-heading">
               <div>
