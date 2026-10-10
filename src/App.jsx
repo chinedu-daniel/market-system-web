@@ -12,6 +12,15 @@ function App() {
   const [productPrice, setProductPrice] = useState("");
   const [submittedProduct, setSubmittedProduct] = useState(null);
 
+  function handleSubmit(event) {
+    event.preventDefault()
+
+    setSubmittedProduct({
+      name: productName,
+      price: Number(productPrice),
+    })
+  }
+
   return (
     <div className="app">
       <Header title="MMS Admin Dashboard" />
@@ -52,7 +61,7 @@ function App() {
           <div className="add-product-section">
             <h3>Add New Product</h3>
 
-            <form action="">
+            <form onSubmit={handleSubmit}>
               <div>
                 <label htmlFor="product-name">Product Name: </label>
                 <input 
@@ -80,6 +89,18 @@ function App() {
               <button type="submit">Add Product</button>
             </form>
           </div>
+
+          {submittedProduct && (
+            <div className="product-card">
+              <div className="product-info">
+                <span className="product-category">NEW PRODUCT</span>
+                <h4>{submittedProduct.name}</h4>
+                <p className="product-price">
+                  ₦{submittedProduct.price.toLocaleString()}
+                </p>
+              </div>
+            </div>
+          )}
 
           {/* ProductCard  */}
           <div className="product-section">
