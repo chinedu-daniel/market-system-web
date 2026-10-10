@@ -1,8 +1,14 @@
-function MainContent(props) {
+function MainContent({ title, text, children }) {
     return(
-        <main>
-            <h2>{props.title}</h2>
-            <p>{props.text}</p>
+        <main className="main-content">
+            <div className="page-intro">
+                <p className="eyebrow">OVERVIEW</p>
+                <h2>{title}</h2>
+                <p>{text}</p>
+            </div>
+
+
+            {children}
         </main>
     )
 }
