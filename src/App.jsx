@@ -67,6 +67,7 @@ function App() {
                 <input 
                   id="product-name"
                   type="text"
+                  required
                   placeholder="e.g. Toyota Brake Pad"
                   value={productName}
                   onChange={(event) => setProductName(event.target.value)}
@@ -79,6 +80,8 @@ function App() {
                 <input 
                   id="product-price"
                   type="number"
+                  min="1"
+                  required
                   placeholder="e.g. 45000"
                   value={productPrice}
                   onChange={(event) => setProductPrice(event.target.value)}
@@ -91,7 +94,7 @@ function App() {
           </div>
 
           {submittedProduct && (
-            <div className="product-card">
+            <div className="submitted-product-card">
               <div className="product-info">
                 <span className="product-category">NEW PRODUCT</span>
                 <h4>{submittedProduct.name}</h4>
