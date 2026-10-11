@@ -11,6 +11,7 @@ function App() {
   const [productName, setProductName] = useState("");
   const [productPrice, setProductPrice] = useState("");
   const [submittedProduct, setSubmittedProduct] = useState(null);
+  
 
   function handleSubmit(event) {
     event.preventDefault()
@@ -19,6 +20,10 @@ function App() {
       name: productName,
       price: Number(productPrice),
     })
+
+    setProductName("")
+    setProductPrice("")
+    // setSubmittedProduct("")
   }
 
   return (
