@@ -11,7 +11,7 @@ function App() {
   const [productName, setProductName] = useState("");
   const [productPrice, setProductPrice] = useState("");
   const [submittedProduct, setSubmittedProduct] = useState(null);
-  
+  const [successMessage, setSuccessMessage] = useState("");
 
   function handleSubmit(event) {
     event.preventDefault()
@@ -21,9 +21,10 @@ function App() {
       price: Number(productPrice),
     })
 
+    setSuccessMessage("Product added successfully!")
+
     setProductName("")
     setProductPrice("")
-    // setSubmittedProduct("")
   }
 
   return (
@@ -97,6 +98,10 @@ function App() {
               <button type="submit">Add Product</button>
             </form>
           </div>
+
+          {successMessage && (
+            <p className="success-message">{successMessage}</p>
+          )}
 
           {submittedProduct && (
             <div className="submitted-product-card">
