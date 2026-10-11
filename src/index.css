@@ -344,6 +344,20 @@ a {
   font-weight: 600;
 }
 
+.submitted-product-card {
+  display: flex;
+  gap: 16px;
+  padding: 22px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
 
 /* =========================
    RESPONSIVE
