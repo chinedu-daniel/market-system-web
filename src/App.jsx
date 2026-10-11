@@ -10,16 +10,25 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [productName, setProductName] = useState("");
   const [productPrice, setProductPrice] = useState("");
-  const [submittedProduct, setSubmittedProduct] = useState(null);
+  const [submittedProducts, setSubmittedProducts] = useState([]);
   const [successMessage, setSuccessMessage] = useState("");
 
   function handleSubmit(event) {
     event.preventDefault()
 
-    setSubmittedProduct({
-      name: productName,
-      price: Number(productPrice),
-    })
+    if (!productName.trim() || Number(productPrice) <= 0) {
+      setSuccessMessage("Please enter a valid product name and price.")
+      return;
+    }
+
+    setSubmittedProducts([
+      ...submittedProducts, 
+      {
+        id: crypto.randomUUID(),
+        name: productName.trim(),
+        price: Number(productPrice),
+    }
+  ]);
 
     setSuccessMessage("Product added successfully!")
 
@@ -103,17 +112,7 @@ function App() {
             <p className="success-message">{successMessage}</p>
           )}
 
-          {submittedProduct && (
-            <div className="submitted-product-card">
-              <div className="product-info">
-                <span className="product-category">NEW PRODUCT</span>
-                <h4>{submittedProduct.name}</h4>
-                <p className="product-price">
-                  ₦{submittedProduct.price.toLocaleString()}
-                </p>
-              </div>
-            </div>
-          )}
+          
 
           {/* ProductCard  */}
           <div className="product-section">
@@ -130,8 +129,22 @@ function App() {
               <ProductCard name="Toyota Brake Pad" price={45000} />
 
               <ProductCard name="Honda Oil Filter" price={18000} />
+
+              {submittedProducts.map((product) =>  (
+                <div className="submitted-product-card" key={product.id}>
+                  <div className="product-info">
+                  <span className="product-category">NEW PRODUCT</span>
+                  <h4>{product.name}</h4>
+                  <p className="product-price">
+                   ₦{product.price.toLocaleString()}
+                  </p>
+                </div>
+                </div>
+              ))}
             </div>
           </div>
+
+          
         </MainContent>
       </div>
     </div>
