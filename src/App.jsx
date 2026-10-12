@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import MainContent from "./components/MainContent";
 import ProductCard from "./components/ProductCard";
+import LoginForm from "./components/LoginForm";
 
 function App() {
 
@@ -12,7 +13,7 @@ function App() {
   const [productPrice, setProductPrice] = useState("");
   const [submittedProducts, setSubmittedProducts] = useState([]);
   const [successMessage, setSuccessMessage] = useState("");
-
+  
   function handleSubmit(event) {
     event.preventDefault()
 
@@ -38,6 +39,8 @@ function App() {
 
   return (
     <div className="app">
+      <LoginForm />
+
       <Header title="MMS Admin Dashboard" />
 
       <button onClick={() => setSidebarOpen(!sidebarOpen)}>
