@@ -359,6 +359,165 @@ a {
 }
 
 
+/* Login page */
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 64px;
+  padding: 48px 24px;
+  background: #f1f5f9;
+}
+
+/* Brand section */
+.login-brand {
+  max-width: 320px;
+  color: #0f2347;
+}
+
+.login-brand-mark {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  background: #0f2347;
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.login-brand-name {
+  margin: 20px 0 8px;
+  font-size: 36px;
+  font-weight: 800;
+}
+
+.login-brand-description {
+  color: #64748b;
+  font-size: 16px;
+}
+
+/* Login card */
+.login-card {
+  width: 100%;
+  max-width: 440px;
+  padding: 40px;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 16px 40px rgba(15, 35, 71, 0.08);
+}
+
+.login-heading {
+  margin-bottom: 28px;
+}
+
+.login-eyebrow {
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.login-heading h1 {
+  margin: 12px 0;
+  color: #0f2347;
+  font-size: 30px;
+}
+
+.login-heading > p:last-child {
+  color: #64748b;
+  line-height: 1.6;
+}
+
+/* Form fields */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.login-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.login-field label {
+  color: #334155;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.login-field input {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #0f172a;
+  font: inherit;
+}
+
+.login-field input:focus {
+  outline: 2px solid #bfdbfe;
+  border-color: #2563eb;
+}
+
+/* Sign-in button */
+.login-submit {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  background: #0f2347;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.login-submit:hover {
+  background: #1e3a66;
+}
+
+.login-footer {
+  margin-top: 24px;
+  color: #64748b;
+  font-size: 13px;
+  text-align: center;
+}
+
+/* Smaller screens */
+@media (max-width: 760px) {
+  .login-page {
+    flex-direction: column;
+    gap: 32px;
+    padding: 32px 16px;
+  }
+
+  .login-brand {
+    text-align: center;
+  }
+
+  .login-brand-mark {
+    margin: 0 auto;
+  }
+
+  .login-brand-name {
+    font-size: 30px;
+  }
+
+  .login-card {
+    padding: 28px 22px;
+  }
+}
+
+
+
 /* =========================
    RESPONSIVE
 ========================= */
