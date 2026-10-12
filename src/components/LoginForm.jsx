@@ -5,30 +5,48 @@ function LoginForm() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    function handleSubmit(event) {
+        event.preventDefault();
+
+        console.log("Email:", email);
+        console.log("Password:", password);
+
+        setEmail("");
+        setPassword("");
+    }
+
     return (
         <div>
             <h2>MMS Login</h2>
             <p>Sign in to your Market Management System.</p>
 
-            <label htmlFor="login-email">Email</label>
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label htmlFor="login-email">Email</label>
 
-            <input
-                id="login-email"
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-            />
+                    <input
+                        id="login-email"
+                        type="email"
+                        placeholder="Enter your email"
+                        value={email}
+                        onChange={(event) => setEmail(event.target.value)}
+                    />
+                </div>
 
-            <label htmlFor="login-password">Password</label>
+                <div>
+                    <label htmlFor="login-password">Password</label>
 
-            <input
-                id="login-password"
-                type="password"
-                placeholder="Enter your password"
-                value={password}
-                onChange={(event) => setPassword(event.target.value)}
-            />
+                    <input
+                        id="login-password"
+                        type="password"
+                        placeholder="Enter your password"
+                        value={password}
+                        onChange={(event) => setPassword(event.target.value)}
+                    />
+                </div>
+
+                <button type="submit">Sign In</button>
+            </form>
         </div>
     )
 };
