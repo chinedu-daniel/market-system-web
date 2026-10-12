@@ -3,7 +3,7 @@ import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import MainContent from "./components/MainContent";
 import ProductCard from "./components/ProductCard";
-import LoginForm from "./components/LoginForm";
+import LoginForm from "./features/auth/LoginForm";
 
 function App() {
 
