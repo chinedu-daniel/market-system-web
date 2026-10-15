@@ -1,7 +1,7 @@
 import  { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function LoginForm() {
+function LoginForm( { onLoginSuccess }) {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -46,6 +46,8 @@ function LoginForm() {
 
             // Temporary storage for our current learning step.
             sessionStorage.setItem("accessToken", accessToken);
+
+            onLoginSuccess();
 
             setEmail("");
             setPassword("");
