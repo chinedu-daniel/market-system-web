@@ -1,5 +1,6 @@
 import  { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { loginUser } from "../../services/authService";
 
 function LoginForm( { onLoginSuccess }) {
 
@@ -17,46 +18,19 @@ function LoginForm( { onLoginSuccess }) {
         setIsSubmitting(true);
 
         try {
-            const response = await fetch("http://localhost:5000/api/users/login",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        email: email,
-                        password: password,
-                    }),
-                }
-            );
-
-            const result = await response.json();
-
-            if (!response.ok) {
-                throw new Error(
-                    result.message || "Login failed. Check your credentials."
-                );
-            }
-
-            const accessToken = result?.data?.accessToken;
-
-            if (!accessToken) {
-                throw new Error("The server did not return an access token.");
-            }
+            const { user, accessToken } = await loginUser(email, password);
 
             // Temporary storage for our current learning step.
             sessionStorage.setItem("accessToken", accessToken);
 
-            onLoginSuccess();
+            onLoginSuccess(user);
 
             setEmail("");
             setPassword("");
 
             navigate("/dashboard");
         } catch (error) {
-            setError(
-                error.message || "Unable to connect to the server."
-            );
+            setError(error.message);
         } finally {
             setIsSubmitting(false);
         }
