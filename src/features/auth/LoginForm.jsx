@@ -1,8 +1,10 @@
 import  { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { loginUser } from "../../services/authService";
+import { useAuth } from "../../context/AuthContext";
 
-function LoginForm( { onLoginSuccess }) {
+function LoginForm() {
+
+    const { login } = useAuth();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -18,12 +20,8 @@ function LoginForm( { onLoginSuccess }) {
         setIsSubmitting(true);
 
         try {
-            const { user, accessToken } = await loginUser(email, password);
+            await login(email, password);
 
-            // Temporary storage for our current learning step.
-            sessionStorage.setItem("accessToken", accessToken);
-
-            onLoginSuccess(user);
 
             setEmail("");
             setPassword("");
