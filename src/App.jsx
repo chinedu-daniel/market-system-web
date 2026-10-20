@@ -1,8 +1,8 @@
 // import { useState } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { useAuth } from "./context/auth/useAuth";
 import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashboardPage";
-import { useAuth } from "./context/AuthContext";
 
 function App() {
   const { isAuthenticated } = useAuth();
