@@ -1,4 +1,4 @@
-import { useTheme } from "../context/useTheme";
+import { useTheme } from "../context/theme/useTheme";
 
 function Header({ title }) {
     const { theme, toggleTheme } = useTheme();
