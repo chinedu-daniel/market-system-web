@@ -3,6 +3,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { useAuth } from "./context/auth/useAuth";
 import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashboardPage";
+import ProductsPage from "./pages/ProductsPage";
 
 function App() {
   const { isAuthenticated } = useAuth();
@@ -15,9 +16,11 @@ function App() {
           } 
         />
 
-        <Route path="/dashboard" element={isAuthenticated ? ( <DashboardPage /> ) : ( <Navigate to="login" replace /> )} />
+        <Route path="/products" element={<ProductsPage />} />
 
-        <Route path="*" element={<Navigate to="/login" replace />} />
+        <Route path="/dashboard" element={isAuthenticated ? ( <DashboardPage /> ) : ( <Navigate to="/login" replace /> )} />
+
+        <Route path="*" element={<Navigate to="/products" replace />} />
       </Routes>
     </BrowserRouter>
   )
