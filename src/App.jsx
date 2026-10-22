@@ -3,7 +3,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { useAuth } from "./context/auth/useAuth";
 import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashboardPage";
-import ProductsPage from "./pages/ProductsPage";
+import ProductsPage from "./pages/ProductsPage/ProductsPage";
 
 function App() {
   const { isAuthenticated } = useAuth();
