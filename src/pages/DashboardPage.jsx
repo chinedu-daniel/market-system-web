@@ -1,57 +1,68 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import MainContent from "../components/MainContent";
 import ProductCard from "../components/ProductCard";
+import { useAuth } from "../context/auth/useAuth";
+import { getProducts } from "../services/productService";
 
 function DashboardPage() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
-  const [productName, setProductName] = useState("");
-  const [productPrice, setProductPrice] = useState("");
-  const [submittedProducts, setSubmittedProducts] = useState([]);
-  const [successMessage, setSuccessMessage] = useState("");
+  // const [productName, setProductName] = useState("");
+  // const [productPrice, setProductPrice] = useState("");
+  // const [submittedProducts, setSubmittedProducts] = useState([]);
+  // const [successMessage, setSuccessMessage] = useState("");
+  const { accessToken } = useAuth();
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
-  function handleSubmit(event) {
-    event.preventDefault();
+  useEffect(() => {
+    async function loadProducts() {
 
-    if (!productName.trim() || Number(productPrice) <= 0) {
-      setSuccessMessage("Please enter a valid product name and price.");
-      return;
+      try {
+        const result = await getProducts();
+        console.log("Products API response:", result);
+        setProducts(result.data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
     }
 
-    setSubmittedProducts([
-      ...submittedProducts,
-      {
-        id: crypto.randomUUID(),
-        name: productName.trim(),
-        price: Number(productPrice),
-      },
-    ]);
+    loadProducts()
+  }, [accessToken]);
 
-    setSuccessMessage("Product added successfully!");
+  // function handleSubmit(event) {
+  //   event.preventDefault();
 
-    setProductName("");
-    setProductPrice("");
-  }
+  //   if (!productName.trim() || Number(productPrice) <= 0) {
+  //     setSuccessMessage("Please enter a valid product name and price.");
+  //     return;
+  //   }
 
-  const initialProducts = [
-    { id: "toyota-brake-pad", name: "Toyota Brake Pad", price: 45000 },
-    { id: "honda-oil-filter", name: "Honda Oil Filter", price: 18000 },
-  ];
+  //   setSubmittedProducts([
+  //     ...submittedProducts,
+  //     {
+  //       id: crypto.randomUUID(),
+  //       name: productName.trim(),
+  //       price: Number(productPrice),
+  //     },
+  //   ]);
 
-  const normalizedSearchTerm = searchTerm.trim().toLowerCase();
+  //   setSuccessMessage("Product added successfully!");
 
-  const filteredInitialProducts = initialProducts.filter((product) => {
-    product.name.toLowerCase().includes(normalizedSearchTerm);
-  });
+  //   setProductName("");
+  //   setProductPrice("");
+  // }
 
-  const filteredSubmittedProducts = submittedProducts.filter((product) => {
-    product.name.toLowerCase().includes(normalizedSearchTerm);
-  });
+  const filteredProducts = products.filter((product) =>
+    product.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
-  const totalProducts =
-    filteredInitialProducts.length + filteredSubmittedProducts.length;
+  const totalProducts = products.length;
 
   return (
     <div className="app">
@@ -89,7 +100,7 @@ function DashboardPage() {
           </div>
 
           {/* Add Product form */}
-          <div className="add-product-section">
+          {/* <div className="add-product-section">
             <h3>Add New Product</h3>
 
             <form onSubmit={handleSubmit}>
@@ -122,11 +133,11 @@ function DashboardPage() {
 
               <button type="submit">Add Product</button>
             </form>
-          </div>
+          </div> */}
 
-          {successMessage && (
+          {/* {successMessage && (
             <p className="success-message">{successMessage}</p>
-          )}
+          )} */}
 
           {/* ProductCard  */}
           <div className="product-section">
@@ -142,7 +153,7 @@ function DashboardPage() {
             </div>
 
             <div className="product-grid">
-              {filteredInitialProducts.map((product) => (
+              {filteredProducts.map((product) => (
                 <ProductCard
                   key={product.id}
                   name={product.name}
@@ -150,7 +161,7 @@ function DashboardPage() {
                 />
               ))}
 
-              {submittedProducts.map((product) => (
+              {/* {submittedProducts.map((product) => (
                 <div className="submitted-product-card" key={product.id}>
                   <div className="product-info">
                     <span className="product-category">NEW PRODUCT</span>
@@ -160,7 +171,7 @@ function DashboardPage() {
                     </p>
                   </div>
                 </div>
-              ))}
+              ))} */}
             </div>
           </div>
         </MainContent>
