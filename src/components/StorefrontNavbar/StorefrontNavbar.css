@@ -1,0 +1,70 @@
+
+.storefront-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 5%;
+  background: var(--bg-sidebar, #14243a);
+  color: #ffffff;
+}
+
+.storefront-brand {
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.3px;
+}
+
+.storefront-nav-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.storefront-nav-links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+}
+
+.storefront-nav-links a:hover {
+  opacity: 0.75;
+}
+
+.storefront-nav-links .signup-link {
+  padding: 8px 10px;
+  background: #ffffff;
+  color: #14243a;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.storefront-nav-links .signup-link:hover {
+  opacity: 0.9;
+}
+
+@media (max-width: 500px) {
+  .storefront-navbar {
+    padding: 16px 4%;
+  }
+
+  .storefront-brand {
+    font-size: 18px;
+  }
+
+  .storefront-nav-links {
+    gap: 12px;
+  }
+
+  .storefront-nav-links a {
+    font-size: 13px;
+  }
+
+  .storefront-nav-links .signup-link {
+    padding: 8px 10px;
+  }
+}
