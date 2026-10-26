@@ -4,6 +4,7 @@ import { useAuth } from "./context/auth/useAuth";
 import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashboardPage";
 import ProductsPage from "./pages/ProductsPage/ProductsPage";
+import ProductDetailsPage from "./pages/ProductsPage/ProductDetailsPage";
 
 function App() {
   const { isAuthenticated } = useAuth();
@@ -19,6 +20,8 @@ function App() {
         <Route path="/products" element={<ProductsPage />} />
 
         <Route path="/dashboard" element={isAuthenticated ? ( <DashboardPage /> ) : ( <Navigate to="/login" replace /> )} />
+
+        <Route path="/products/:id" element={<ProductDetailsPage />} />
 
         <Route path="*" element={<Navigate to="/products" replace />} />
       </Routes>
